@@ -6,7 +6,7 @@ use crate::{
         limits,
         run::{Metric, Param, Run, RunTag},
     },
-    timestamp, Client, ExperimentId,
+    timestamp, Client, id::ExperimentId,
 };
 
 /// A MLflow Run.

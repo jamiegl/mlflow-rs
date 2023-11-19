@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::ExperimentId;
+use crate::id::ExperimentId;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Experiment {
@@ -18,3 +18,4 @@ pub struct ExperimentTag {
     pub key: String,
     pub value: String,
 }
+

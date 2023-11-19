@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     api::{opt_str_int, str_int},
-    ExperimentId, RunId,
+    id::{ExperimentId, RunId}
 };
 
 #[derive(Debug, Serialize, Deserialize)]

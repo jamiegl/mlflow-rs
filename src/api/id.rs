@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(transparent)]
-pub struct ExperimentId(String);
+pub struct ExperimentId(pub String);
 
 impl AsRef<str> for ExperimentId {
     fn as_ref(&self) -> &str {

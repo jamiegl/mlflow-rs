@@ -5,6 +5,7 @@ pub mod id;
 pub mod metric;
 pub mod run;
 pub mod search;
+pub mod model_versions;
 
 pub mod limits {
     pub const BATCH_TOTAL: usize = 1000;

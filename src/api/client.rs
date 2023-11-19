@@ -1,4 +1,4 @@
-use crate::api::{error::*, experiment::*, id::*, run::*, search::*};
+use crate::api::{error::*, experiment::*, id::*, run::*, search::*, model_versions::*};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
@@ -18,6 +18,7 @@ pub enum LifecycleStage {
     Deleted,
 }
 
+// Shouldn't the order_by be an Option<Vec<&str>>?
 #[rustfmt::skip]
 pub trait Client {
     fn create_experiment(&mut self, name: &str) -> Result<ExperimentId, CreateError>;
@@ -38,4 +39,6 @@ pub trait Client {
     fn log_param(&mut self, run: &RunId, key: &str, value: &str) -> Result<(), StorageError>;
     fn log_metric(&mut self, run: &RunId, key: &str, value: f64, timestamp: i64, step: i64) -> Result<(), StorageError>;
     fn log_batch(&mut self, run: &RunId, metrics: &[Metric], params: &[Param], tags: &[RunTag]) -> Result<(), BatchError>;
+
+    fn get_model_versions(&mut self, filter: &str, max_results: i32, order_by: Option<&str>, page_token: Option<&str>) -> Result<Vec<ModelVersion>, StorageError>;
 }

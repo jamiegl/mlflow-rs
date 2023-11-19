@@ -3,7 +3,7 @@ pub mod backend;
 pub mod tracking;
 
 pub use api::client::Client;
-pub use api::id::{ExperimentId, RunId};
+pub use api::*;
 
 /// Utility function to create a MLflow timestamp.
 pub fn timestamp() -> i64 {

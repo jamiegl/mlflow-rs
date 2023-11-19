@@ -6,8 +6,9 @@ use crate::{
         limits,
         run::{Metric, Param, Run, RunData, RunInfo, RunStatus, RunTag},
         search::{PageToken, RunList, Search},
+        model_versions::{ModelVersion}
     },
-    ExperimentId, RunId,
+    id::{ExperimentId, RunId}
 };
 use anyhow::{Context, Error};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
@@ -308,6 +309,10 @@ impl Client for Server {
         })
     }
 
+    fn get_model_versions(&mut self, filter: &str, max_results: i32, order_by: Option<&str>, page_token: Option<&str>) -> Result<Vec<ModelVersion>, StorageError> {
+        todo!()
+    }
+
     fn log_param(&mut self, run_id: &RunId, key: &str, value: &str) -> Result<(), StorageError> {
         let request = LogParam { run_id, key, value };
         self.execute(request, StorageError::from)
@@ -359,6 +364,7 @@ impl Client for Server {
         };
         self.execute(request, |err| BatchError::Storage(err.into()))
     }
+    
 }
 
 trait Endpoint {
